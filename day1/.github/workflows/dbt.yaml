@@ -1,0 +1,15 @@
+name: dbt
+on:
+  schedule:
+    - cron: "0 0 * * *"
+jobs:
+  dbt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up dbt
+        uses: fishtown-analytics/setup-dbt@v1
+      - name: Install dbt dependencies
+        run: dbt deps
+      - name: Run dbt
+        run: dbt run
